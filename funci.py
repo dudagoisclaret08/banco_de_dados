@@ -31,11 +31,9 @@ banco.close()
 
 import sqlite3
 
-# Conecta no banco escola.db
 conn = sqlite3.connect('escola.db')
 cursor = conn.cursor()
 
-# 1. Listar nome e nota de todos os alunos
 print("Nome e nota de todos os alunos:")
 cursor.execute("SELECT nome, nota FROM alunos")
 for nome, nota in cursor.fetchall():
@@ -54,7 +52,6 @@ else:
 
 print("\n")
 
-# 3. Exibir alunos da turma 'B' com nota >= 7
 print("Alunos da turma 'B' com nota maior ou igual a 7:")
 cursor.execute("SELECT * FROM alunos WHERE turma = 'B' AND nota >= 7")
 for aluno in cursor.fetchall():
@@ -69,11 +66,9 @@ conn.close()
 ###atvdd3
 import sqlite3
 
-# Conecta no banco loja.db
 conn = sqlite3.connect('loja.db')
 cursor = conn.cursor()
 
-# 1. Mostrar produto e cliente de todas as vendas
 print("Produto e cliente de todas as vendas:")
 cursor.execute("SELECT produto, cliente FROM vendas")
 for produto, cliente in cursor.fetchall():
@@ -81,7 +76,6 @@ for produto, cliente in cursor.fetchall():
 
 print("\n")
 
-# 2. Listar todas as vendas realizadas pelo cliente "João"
 print('Vendas realizadas pelo cliente "João":')
 cursor.execute("SELECT * FROM vendas WHERE cliente = 'João'")
 vendas = cursor.fetchall()
@@ -93,7 +87,6 @@ else:
 
 print("\n")
 
-# 3. Exibir produtos cujo preço unitário seja maior que 50
 print("Produtos com preço unitário maior que 50:")
 cursor.execute("SELECT produto FROM vendas WHERE preco_unitario > 50")
 produtos = cursor.fetchall()
@@ -103,6 +96,38 @@ for (produto,) in produtos:
 
 conn.close()
 
+
+
+##atvdd4  
+import sqlite3
+
+conn = sqlite3.connect('cinema.db')
+cursor = conn.cursor()
+
+print("Títulos e gêneros de todos os filmes:")
+cursor.execute("SELECT titulo, genero FROM filmes")
+for titulo, genero in cursor.fetchall():
+    print(f"Título: {titulo}, Gênero: {genero}")
+
+print("\n")
+
+print('Dados do filme "Matrix":')
+cursor.execute("SELECT * FROM filmes WHERE titulo = 'Matrix'")
+filme = cursor.fetchone()
+if filme:
+    print(filme)
+else:
+    print("Filme 'Matrix' não encontrado.")
+
+print("\n")
+
+print("Títulos e avaliações dos filmes lançados após 2010:")
+cursor.execute("SELECT titulo, avaliacao FROM filmes WHERE ano > 2010")
+for titulo, avaliacao in cursor.fetchall():
+    print(f"Título: {titulo}, Avaliação: {avaliacao}")
+
+
+conn.close()
 
 
 
